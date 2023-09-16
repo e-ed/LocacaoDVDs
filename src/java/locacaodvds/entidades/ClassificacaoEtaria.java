@@ -8,13 +8,13 @@ package locacaodvds.entidades;
  *
  * @author eduardo
  */
-public class Classificacao_Etaria {
+public class ClassificacaoEtaria {
     private int id;
     private String descricao;
 
-    public Classificacao_Etaria() {}
+    public ClassificacaoEtaria() {}
 
-    public Classificacao_Etaria(String descricao) {
+    public ClassificacaoEtaria(String descricao) {
         this.descricao = descricao;
     }
     

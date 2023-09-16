@@ -7,7 +7,9 @@ package locacaodvds.testes;
 import locacaodvds.dao.AtorDAO;
 import java.sql.SQLException;
 import java.sql.Date;
+import locacaodvds.dao.GeneroDAO;
 import locacaodvds.entidades.Ator;
+import locacaodvds.entidades.Genero;
 
 /**
  *
@@ -16,17 +18,12 @@ import locacaodvds.entidades.Ator;
 public class TestesDAO {
 
     public static void main(String[] args) {
+        GeneroDAO gd = null;
         AtorDAO ad = null;
 
         try {
             ad = new AtorDAO();
-
-            //ad.salvar(new Ator("didi", "moco", Date.valueOf("2000-01-01")));
-
-            ad.listarTodos().forEach((ator) -> {
-                System.out.println(ator.getId() + " - " + ator.getNome() + " - " + ator.getSobrenome() + " - " + ator.getData_estreia());
-            }
-            );
+            gd = new GeneroDAO();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,6 +32,14 @@ public class TestesDAO {
             if (ad != null) {
                 try {
                     ad.fecharConexao();
+                } catch (Exception e) {
+                    System.out.println("erro ao fechar");
+                    e.printStackTrace();
+                }
+            }
+            if (gd != null) {
+                try {
+                    gd.fecharConexao();
                 } catch (Exception e) {
                     System.out.println("erro ao fechar");
                     e.printStackTrace();
