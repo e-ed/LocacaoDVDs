@@ -39,12 +39,12 @@
                 <td>${ator.sobrenome}</td>
                 <td>${ator.data_estreia}</td>
                 <td>
-                    <a href="${cp}/formularios/ator/alterar.jsp?id=${ator.id}&descricao=${genero.descricao}">
+                    <a href="${cp}/formularios/ator/alterar.jsp?id=${ator.id}&nome=${ator.nome}&sobrenome=${ator.sobrenome}&data_estreia=${ator.data_estreia}">
                         Alterar
                     </a>
                 </td>
                 <td>
-                    <a href="${cp}/formularios/ator/excluir.jsp?id=${ator.id}&descricao=${genero.descricao}">
+                    <a href="${cp}/formularios/ator/excluir.jsp?id=${ator.id}&nome=${ator.nome}&sobrenome=${ator.sobrenome}&data_estreia=${ator.data_estreia}">
                         Excluir
                     </a>
                 </td>
