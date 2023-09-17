@@ -51,6 +51,13 @@ public class AtoresServlet extends HttpServlet {
                     atorSendoAtualizado.setData_estreia(Date.valueOf(request.getParameter("data_estreia")));
                     atorDAO.atualizar(atorSendoAtualizado);
                     disp = request.getRequestDispatcher("/formularios/ator/listagem.jsp");
+                    break;
+                case "excluir":
+                    Ator atorSendoExcluido = new Ator();
+                    atorSendoExcluido.setId(Integer.valueOf(request.getParameter("id")));
+                    atorDAO.excluir(atorSendoExcluido);
+                    disp = request.getRequestDispatcher("/formularios/ator/listagem.jsp");
+                    break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
