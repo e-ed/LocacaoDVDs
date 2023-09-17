@@ -43,6 +43,14 @@ public class AtoresServlet extends HttpServlet {
                     atorDAO.salvar(ator);
                     disp = request.getRequestDispatcher("/formularios/ator/listagem.jsp");
                     break;
+                case "alterar":
+                    Ator atorSendoAtualizado = new Ator();
+                    atorSendoAtualizado.setId(Integer.valueOf(request.getParameter("id")));
+                    atorSendoAtualizado.setNome(request.getParameter("nome"));
+                    atorSendoAtualizado.setSobrenome(request.getParameter("sobrenome"));
+                    atorSendoAtualizado.setData_estreia(Date.valueOf(request.getParameter("data_estreia")));
+                    atorDAO.atualizar(atorSendoAtualizado);
+                    disp = request.getRequestDispatcher("/formularios/ator/listagem.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +63,7 @@ public class AtoresServlet extends HttpServlet {
                 }
             }
         }
-        
+
         if (disp != null) {
             disp.forward(request, response);
         }
