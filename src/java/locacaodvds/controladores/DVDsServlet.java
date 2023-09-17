@@ -19,7 +19,6 @@ import locacaodvds.dao.DVDDAO;
 import locacaodvds.entidades.DVD;
 import java.sql.Date;
 
-
 /**
  *
  * @author eduardo
@@ -42,7 +41,7 @@ public class DVDsServlet extends HttpServlet {
         RequestDispatcher disp = null;
 
         try {
-            dvdDAO= new DVDDAO();
+            dvdDAO = new DVDDAO();
             switch (request.getParameter("acao")) {
                 case "inserir":
                     DVD dvd = new DVD();
@@ -54,15 +53,22 @@ public class DVDsServlet extends HttpServlet {
                     dvd.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
                     dvd.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
                     dvd.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
-            
-                    
+
                     dvdDAO.salvar(dvd);
                     disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
                     break;
                 case "alterar":
                     DVD dvdAtualizado = new DVD();
                     dvdAtualizado.setId(Integer.valueOf(request.getParameter("id")));
-                
+                    dvdAtualizado.setTitulo(request.getParameter("titulo"));
+                    dvdAtualizado.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
+                    dvdAtualizado.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
+                    dvdAtualizado.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
+                    dvdAtualizado.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
+                    dvdAtualizado.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
+                    dvdAtualizado.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
+                    dvdAtualizado.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
+
                     dvdDAO.atualizar(dvdAtualizado);
                     disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
                     break;

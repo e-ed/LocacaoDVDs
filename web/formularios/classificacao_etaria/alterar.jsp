@@ -4,12 +4,6 @@
     Author     : eduardo
 --%>
 
-<%-- 
-    Document   : alterar.jsp
-    Created on : Sep 17, 2023, 4:51:34 PM
-    Author     : eduardo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html data-bs-theme="dark">
