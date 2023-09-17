@@ -4,12 +4,6 @@
     Author     : eduardo
 --%>
 
-<%-- 
-    Document   : listagem
-    Created on : Sep 17, 2023, 2:49:57 PM
-    Author     : eduardo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>

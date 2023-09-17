@@ -12,57 +12,73 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import locacaodvds.dao.AtorDAO;
-import locacaodvds.dao.ClassificacaoEtariaDAO;
-import locacaodvds.entidades.Ator;
-import locacaodvds.entidades.ClassificacaoEtaria;
+import locacaodvds.dao.DVDDAO;
+import locacaodvds.entidades.DVD;
+import java.sql.Date;
+
 
 /**
  *
  * @author eduardo
  */
-@WebServlet(name = "ClassificacoesEtariasServlet", urlPatterns = {"/processaClassificacoesEtarias"})
-public class ClassificacoesEtariasServlet extends HttpServlet {
+@WebServlet(name = "DVDsServlet", urlPatterns = {"/processaDVDs"})
+public class DVDsServlet extends HttpServlet {
 
-   
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ClassificacaoEtariaDAO classificacaoEtariaDAO = null;
+        DVDDAO dvdDAO = null;
         RequestDispatcher disp = null;
 
         try {
-            classificacaoEtariaDAO= new ClassificacaoEtariaDAO();
+            dvdDAO= new DVDDAO();
             switch (request.getParameter("acao")) {
                 case "inserir":
-                    ClassificacaoEtaria c = new ClassificacaoEtaria();
-                    c.setDescricao(request.getParameter("descricao"));
-                    classificacaoEtariaDAO.salvar(c);
-                    disp = request.getRequestDispatcher("/formularios/classificacao_etaria/listagem.jsp");
+                    DVD dvd = new DVD();
+                    dvd.setTitulo(request.getParameter("titulo"));
+                    dvd.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
+                    dvd.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
+                    dvd.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
+                    dvd.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
+                    dvd.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
+                    dvd.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
+                    dvd.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
+            
+                    
+                    dvdDAO.salvar(dvd);
+                    disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
                     break;
                 case "alterar":
-                    ClassificacaoEtaria cl = new ClassificacaoEtaria();
-                    cl.setId(Integer.valueOf(request.getParameter("id")));
-                    cl.setDescricao(request.getParameter("descricao"));
-                    classificacaoEtariaDAO.atualizar(cl);
-                    disp = request.getRequestDispatcher("/formularios/classificacao_etaria/listagem.jsp");
+                    DVD dvdAtualizado = new DVD();
+                    dvdAtualizado.setId(Integer.valueOf(request.getParameter("id")));
+                
+                    dvdDAO.atualizar(dvdAtualizado);
+                    disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
                     break;
                 case "excluir":
-                    ClassificacaoEtaria cla = new ClassificacaoEtaria();
-                    cla.setId(Integer.valueOf(request.getParameter("id")));
-                    classificacaoEtariaDAO.excluir(cla);
-                    disp = request.getRequestDispatcher("/formularios/classificacao_etaria/listagem.jsp");
+                    DVD dvdExcluido = new DVD();
+                    dvdExcluido.setId(Integer.valueOf(request.getParameter("id")));
+                    dvdDAO.excluir(dvdExcluido);
+                    disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
                     break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (classificacaoEtariaDAO != null) {
+            if (dvdDAO != null) {
                 try {
-                    classificacaoEtariaDAO.fecharConexao();
+                    dvdDAO.fecharConexao();
                 } catch (SQLException ex) {
                     Logger.getLogger(AtoresServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -72,7 +88,6 @@ public class ClassificacoesEtariasServlet extends HttpServlet {
         if (disp != null) {
             disp.forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
