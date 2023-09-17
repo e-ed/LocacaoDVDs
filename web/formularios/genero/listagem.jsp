@@ -35,7 +35,7 @@
                 <td scope="row">${genero.id}</td>
                 <td>${genero.descricao}</td>
                 <td>
-                    <a href="${cp}/${cp}/formularios/genero/alterar.jsp?id=${genero.id}&descricao=${genero.descricao}">
+                    <a href="${cp}/formularios/genero/alterar.jsp?id=${genero.id}&descricao=${genero.descricao}">
                         Alterar
                     </a>
                 </td>
