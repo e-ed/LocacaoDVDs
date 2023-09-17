@@ -81,6 +81,7 @@ public class DVDDAO extends DAO<DVD> {
         
         while (rs.next()) {
             DVD dvd = new DVD();
+            dvd.setId(Integer.valueOf(rs.getString("id")));
             dvd.setTitulo(rs.getString("titulo"));
             dvd.setAno_lancamento(rs.getInt("ano_lancamento"));
             dvd.setAtor_principal_id(rs.getInt("ator_principal_id"));
