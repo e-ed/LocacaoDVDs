@@ -8,6 +8,7 @@ import java.util.List;
 import locacaodvds.dao.GeneroDAO;
 import locacaodvds.entidades.Genero;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class GeneroServices {
     public List<Genero> getTodos() {
-        List<Genero> generos = null;
+        List<Genero> generos = new ArrayList<>();
         GeneroDAO g = null;
         
         try {
