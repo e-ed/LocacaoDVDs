@@ -8,7 +8,7 @@
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Nova classificação etária</title>

@@ -10,7 +10,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Atores</title>
@@ -19,7 +19,8 @@
 </head>
 <body>
     <h2>Atores</h2>
-    <table class="table">
+    <br>
+    <table class="table table-dark table-striped">
         <tr>
             <th scope="col">id</th>
             <th scope="col">Nome</th>
