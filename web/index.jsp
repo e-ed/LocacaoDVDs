@@ -22,6 +22,7 @@
     <body>
 
         <h1>Sistema para Cadastro de DVDs</h1>
+        
 
         <p>
             <a href="${cp}/formularios/ator/listagem.jsp">Atores</a>
@@ -33,7 +34,7 @@
             <a href="${cp}/formularios/genero/listagem.jsp">Genero</a>
         </p>
         <p>
-            <a href="${cp}/formularios/genero/listagem.jsp">DVD</a>
+            <a href="${cp}/formularios/dvd/listagem.jsp">DVD</a>
         </p>
 
     </body>
