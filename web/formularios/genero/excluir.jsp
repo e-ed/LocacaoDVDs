@@ -20,21 +20,21 @@
         String descricao = request.getParameter("descricao");
         %>
 
-        <form action="">
+        <form method="POST" action="/LocacaoDVDs/processaGeneros">
+            <input name="acao" type="hidden" value="excluir"/>
+            <input name="id" type="hidden" value="<%= id %>"/>
             <h2>Excluir gênero: </h2>
             <table class="table">
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Descrição</th>
-
                 </tr>
 
                 <tr>
-                    <td scope="row"> <%= id %></td>
+                    <td scope="row"> <%= id %> </td>
                     <td> <%= descricao %></td>
 
                 </tr>
-
 
             </table>
             <button type="submit" class="btn btn-primary">Excluir</button>

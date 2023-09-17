@@ -25,26 +25,24 @@ import locacaodvds.entidades.Genero;
 @WebServlet(name = "GenerosServlet", urlPatterns = {"/processaGeneros"})
 public class GenerosServlet extends HttpServlet {
 
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher disp = null;
-        
+        GeneroDAO generoDAO = null;
+
         switch (request.getParameter("acao")) {
             case "inserir":
                 Genero genero = new Genero();
-                GeneroDAO generoDAO = null;
                 try {
                     generoDAO = new GeneroDAO();
                     genero.setDescricao(request.getParameter("descricao"));
                     generoDAO.salvar(genero);
                     disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
-                    
-                    
-                } catch(Exception e) {
+
+                } catch (Exception e) {
                     e.printStackTrace();
-                    
+
                 } finally {
                     if (generoDAO != null) {
                         try {
@@ -55,9 +53,35 @@ public class GenerosServlet extends HttpServlet {
                     }
                 }
                 break;
+
+            case "excluir": {
+                try {
+                    generoDAO = new GeneroDAO();
+                    Genero generoSendoExcluido = new Genero();
+                    generoSendoExcluido.setId(Integer.valueOf(request.getParameter("id")));
+                    generoDAO.excluir(generoSendoExcluido);
+                    disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    if (generoDAO != null) {
+                        try {
+                            generoDAO.fecharConexao();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }
+
+            break;
+
         }
-        
-        if (disp != null) disp.forward(request, response);
+
+        if (disp != null) {
+            disp.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
