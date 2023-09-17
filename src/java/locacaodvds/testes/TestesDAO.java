@@ -8,9 +8,11 @@ import locacaodvds.dao.AtorDAO;
 import java.sql.SQLException;
 import java.sql.Date;
 import locacaodvds.dao.ClassificacaoEtariaDAO;
+import locacaodvds.dao.DVDDAO;
 import locacaodvds.dao.GeneroDAO;
 import locacaodvds.entidades.Ator;
 import locacaodvds.entidades.ClassificacaoEtaria;
+import locacaodvds.entidades.DVD;
 import locacaodvds.entidades.Genero;
 
 /**
@@ -23,23 +25,38 @@ public class TestesDAO {
         GeneroDAO gd = null;
         AtorDAO ad = null;
         ClassificacaoEtariaDAO ced = null;
+        DVDDAO dvddao = null;
 
         try {
             ad = new AtorDAO();
             gd = new GeneroDAO();
             ced = new ClassificacaoEtariaDAO();
+            dvddao = new DVDDAO();
             
-            var c = new ClassificacaoEtaria();
-            c.setDescricao("+20");
-
+            DVD dvd = new DVD();
+            dvd.setTitulo("NOVOTITULO");
+            dvd.setAno_lancamento(2021);
+            dvd.setAtor_principal_id(1);
+            dvd.setAtor_coadjuvante_id(2);
+            dvd.setData_lancamento(Date.valueOf("1998-01-01"));
+            dvd.setDuracao_minutos(1000);
+            dvd.setClassificacao_etaria_id(2);
+            dvd.setGenero_id(2);
+          
             
-            //ced.salvar(c);
+            dvddao.salvar(dvd);
             
-            ced.listarTodos().forEach((ce) -> {
-                System.out.println(ce.getId() + " - " + ce.getDescricao());
+            dvddao.listarTodos().forEach((d) -> {
+                System.out.println(d.getId() + " - " + d.getTitulo() + "-" + 
+                        d.getAtor_principal_id() + " - " + d.getAtor_coadjuvante_id() + 
+                                "-" + d.getData_lancamento() + " - " + d.getDuracao_minutos() + 
+                                " - " + d.getClassificacao_etaria_id() + " - " + d.getGenero_id());
             });
             
-            System.out.println("por id: " + ced.obterPorId(2).getDescricao());
+            System.out.println("Obter por id: " + dvddao.obterPorId(2));
+            
+           
+
 
         } catch (SQLException e) {
             e.printStackTrace();

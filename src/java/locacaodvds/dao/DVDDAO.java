@@ -17,12 +17,8 @@ import locacaodvds.entidades.DVD;
  */
 public class DVDDAO extends DAO<DVD> {
 
-    public DVDDAO() throws SQLException 
+    public DVDDAO() throws SQLException {}
     
-
-    () {
-        
-    }
 
     @Override
     public void salvar(DVD obj) throws SQLException {
