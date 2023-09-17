@@ -64,6 +64,7 @@ public class GeneroDAO extends DAO<Genero> {
 
         while (rs.next()) {
             Genero g = new Genero();
+            g.setId(rs.getInt("id"));
             g.setDescricao(rs.getString("descricao"));
             generos.add(g);
         }

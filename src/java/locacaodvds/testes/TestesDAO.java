@@ -32,28 +32,31 @@ public class TestesDAO {
             gd = new GeneroDAO();
             ced = new ClassificacaoEtariaDAO();
             dvddao = new DVDDAO();
-            
-            DVD dvd = new DVD();
-            dvd.setTitulo("NOVOTITULO");
-            dvd.setAno_lancamento(2021);
-            dvd.setAtor_principal_id(1);
-            dvd.setAtor_coadjuvante_id(2);
-            dvd.setData_lancamento(Date.valueOf("1998-01-01"));
-            dvd.setDuracao_minutos(1000);
-            dvd.setClassificacao_etaria_id(2);
-            dvd.setGenero_id(2);
-          
-            
-            dvddao.salvar(dvd);
-            
-            dvddao.listarTodos().forEach((d) -> {
-                System.out.println(d.getId() + " - " + d.getTitulo() + "-" + 
-                        d.getAtor_principal_id() + " - " + d.getAtor_coadjuvante_id() + 
-                                "-" + d.getData_lancamento() + " - " + d.getDuracao_minutos() + 
-                                " - " + d.getClassificacao_etaria_id() + " - " + d.getGenero_id());
+            gd.listarTodos().forEach((genero) -> {
+                System.out.println(genero.getId() + " - " + genero.getDescricao());
             });
             
-            System.out.println("Obter por id: " + dvddao.obterPorId(2));
+//            DVD dvd = new DVD();
+//            dvd.setTitulo("NOVOTITULO");
+//            dvd.setAno_lancamento(2021);
+//            dvd.setAtor_principal_id(1);
+//            dvd.setAtor_coadjuvante_id(2);
+//            dvd.setData_lancamento(Date.valueOf("1998-01-01"));
+//            dvd.setDuracao_minutos(1000);
+//            dvd.setClassificacao_etaria_id(2);
+//            dvd.setGenero_id(2);
+          
+            
+//            dvddao.salvar(dvd);
+//            
+//            dvddao.listarTodos().forEach((d) -> {
+//                System.out.println(d.getId() + " - " + d.getTitulo() + "-" + 
+//                        d.getAtor_principal_id() + " - " + d.getAtor_coadjuvante_id() + 
+//                                "-" + d.getData_lancamento() + " - " + d.getDuracao_minutos() + 
+//                                " - " + d.getClassificacao_etaria_id() + " - " + d.getGenero_id());
+//            });
+//            
+//            System.out.println("Obter por id: " + dvddao.obterPorId(2));
             
            
 
