@@ -82,6 +82,8 @@ public class ClassificacaoEtariaDAO extends DAO<ClassificacaoEtaria> {
         "select * from classificacao_etaria where id = ?;"
         );
         
+        stmt.setInt(1, id);
+        
         ResultSet rs = stmt.executeQuery();
         
         if (rs.next()) {
