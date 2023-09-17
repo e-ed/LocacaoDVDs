@@ -4,12 +4,6 @@
     Author     : eduardo
 --%>
 
-<%-- 
-    Document   : novo.jsp
-    Created on : Sep 17, 2023, 3:43:19 PM
-    Author     : eduardo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 
