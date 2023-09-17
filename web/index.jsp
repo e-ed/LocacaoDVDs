@@ -21,46 +21,36 @@
     </head>
 
     <body>
-        
+
         <div class="d-flex justify-content-center">
             <h1>Sistema para Cadastro de DVDs</h1>
         </div>
+        <hr>
+        <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        
 
-                    <div class="d-flex justify-content-center">
+                    <p class="ms-5 me-3">
+                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/ator/listagem.jsp">Atores</a>
+                    </p>
+      
+                    <p class="ms-3 me-3">
+                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/classificacao_etaria/listagem.jsp">Classificacões Etárias</a>
+                    </p>
 
-            <br/><br/><br/>
 
-            <div class="p-2">
-                <p>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/ator/listagem.jsp">Atores</a>
-                </p>
+                    <p class="ms-3 me-3">
+                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/genero/listagem.jsp">Gêneros</a>
+                    </p>
+        
+                    <p class="ms-3 me-5">
+                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/dvd/listagem.jsp">DVDs</a>
+                    </p>
+                
             </div>
+        
+    </nav>
 
-            <div class="p-2">
-
-                <p>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/classificacao_etaria/listagem.jsp">Classificacão Etária</a>
-                </p>
-
-            </div>
-
-            <div class="p-2">
-
-                <p>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/genero/listagem.jsp">Genero</a>
-                </p>
-            </div>
-
-            <div class="p-2">
-
-                <p>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/dvd/listagem.jsp">DVD</a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
 
 </html>
