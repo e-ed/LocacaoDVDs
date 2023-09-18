@@ -36,12 +36,12 @@
                 <td scope="row">${ce.id}</td>
                 <td>${ce.descricao}</td>
                 <td>
-                    <a href="${cp}/formularios/classificacao_etaria/alterar.jsp?id=${ce.id}&descricao=${ce.descricao}">
+                    <a class="btn btn-outline-primary" href="${cp}/formularios/classificacao_etaria/alterar.jsp?id=${ce.id}&descricao=${ce.descricao}">
                         Alterar
                     </a>
                 </td>
                 <td>
-                    <a href="${cp}/formularios/classificacao_etaria/excluir.jsp?id=${ce.id}&descricao=${ce.descricao}">
+                    <a class="btn btn-outline-danger" href="${cp}/formularios/classificacao_etaria/excluir.jsp?id=${ce.id}&descricao=${ce.descricao}">
                         Excluir
                     </a>
                 </td>

@@ -50,12 +50,12 @@
                 <td>${dvd.classificacao_etaria_descricao}</td>
                 <td>${dvd.genero_descricao}</td>
                 <td>
-                    <a href="${cp}/formularios/dvd/alterar.jsp?id=${dvd.id}&titulo=${dvd.titulo}&ano_lancamento=${dvd.ano_lancamento}&ator_principal_id=${dvd.ator_principal_id}&ator_coadjuvante_id=${dvd.ator_coadjuvante_id}&data_lancamento=${dvd.data_lancamento}&duracao_minutos=${dvd.duracao_minutos}&classificacao_etaria_id=${dvd.classificacao_etaria_id}&genero_id=${dvd.genero_id}">
+                    <a class="btn btn-outline-primary" href="${cp}/formularios/dvd/alterar.jsp?id=${dvd.id}&titulo=${dvd.titulo}&ano_lancamento=${dvd.ano_lancamento}&ator_principal_id=${dvd.ator_principal_id}&ator_coadjuvante_id=${dvd.ator_coadjuvante_id}&data_lancamento=${dvd.data_lancamento}&duracao_minutos=${dvd.duracao_minutos}&classificacao_etaria_id=${dvd.classificacao_etaria_id}&genero_id=${dvd.genero_id}">
                         Alterar
                     </a>
                 </td>
                 <td>
-                    <a href="${cp}/formularios/dvd/excluir.jsp?id=${dvd.id}&titulo=${dvd.titulo}&ano_lancamento=${dvd.ano_lancamento}&ator_principal_id=${dvd.ator_principal_id}&ator_coadjuvante_id=${dvd.ator_coadjuvante_id}&data_lancamento=${dvd.data_lancamento}&duracao_minutos=${dvd.duracao_minutos}&classificacao_etaria_id=${dvd.classificacao_etaria_id}&genero_id=${dvd.genero_id}">
+                    <a class="btn btn-outline-danger" href="${cp}/formularios/dvd/excluir.jsp?id=${dvd.id}&titulo=${dvd.titulo}&ano_lancamento=${dvd.ano_lancamento}&ator_principal_id=${dvd.ator_principal_id}&ator_coadjuvante_id=${dvd.ator_coadjuvante_id}&data_lancamento=${dvd.data_lancamento}&duracao_minutos=${dvd.duracao_minutos}&classificacao_etaria_id=${dvd.classificacao_etaria_id}&genero_id=${dvd.genero_id}">
                         Excluir
                     </a>
                 </td>

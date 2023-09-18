@@ -35,12 +35,12 @@
                 <td scope="row">${genero.id}</td>
                 <td>${genero.descricao}</td>
                 <td>
-                    <a href="${cp}/formularios/genero/alterar.jsp?id=${genero.id}&descricao=${genero.descricao}">
+                    <a class="btn btn-outline-primary" href="${cp}/formularios/genero/alterar.jsp?id=${genero.id}&descricao=${genero.descricao}">
                         Alterar
                     </a>
                 </td>
                 <td>
-                    <a href="${cp}/formularios/genero/excluir.jsp?id=${genero.id}&descricao=${genero.descricao}">
+                    <a class="btn btn-outline-danger" href="${cp}/formularios/genero/excluir.jsp?id=${genero.id}&descricao=${genero.descricao}">
                         Excluir
                     </a>
                 </td>

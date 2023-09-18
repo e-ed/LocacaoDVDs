@@ -41,10 +41,15 @@ public class DVDsServlet extends HttpServlet {
         RequestDispatcher disp = null;
 
         String titulo = request.getParameter("titulo");
+        String ano_lancamento = request.getParameter("ano_lancamento");
+        String ator_principal_id = request.getParameter("ator_principal_id");
         System.out.println("titulo eh " + titulo);
 
-        if (titulo == null || titulo.isEmpty() || titulo.isBlank() || titulo.length() == 0) {
-            request.setAttribute("errorMessage", "Nome inválido!");
+        if (titulo == null || titulo.isEmpty() || titulo.isBlank() || titulo.length() == 0 ||
+            ano_lancamento == null || ano_lancamento.isEmpty() || ano_lancamento.isBlank() || ano_lancamento.length() == 0 || Integer.valueOf(ano_lancamento) < 1 ||
+                ator_principal_id == null || ator_principal_id.isEmpty() || ator_principal_id.isBlank() || ator_principal_id.length() == 0
+                ) {
+            request.setAttribute("errorMessage", "Dados inválidos!");
             request.setAttribute("voltar", "formularios/dvd/listagem.jsp");
             disp = request.getRequestDispatcher("/erro/erro.jsp");
         } else {
@@ -54,8 +59,8 @@ public class DVDsServlet extends HttpServlet {
                     case "inserir":
                         DVD dvd = new DVD();
                         dvd.setTitulo(titulo);
-                        dvd.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
-                        dvd.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
+                        dvd.setAno_lancamento(Integer.valueOf(ano_lancamento));
+                        dvd.setAtor_principal_id(Integer.valueOf(ator_principal_id));
                         dvd.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
                         dvd.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
                         dvd.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
