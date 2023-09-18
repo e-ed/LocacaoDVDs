@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html data-bs-theme="dark">
     <head>
@@ -25,66 +28,93 @@
         String classificacao_etaria_id = request.getParameter("classificacao_etaria_id");
         String genero_id = request.getParameter("genero_id");
         %>
+        <c:set var="ator_principal_id" value="<%= ator_principal_id %>"/>
 
         <form method="POST" action="/LocacaoDVDs/processaDVDs">
             <input name="acao" type="hidden" value="alterar"/>
             <input name="id" type="hidden" value="<%= id %>"/>
             <h2>Alterar DVD: </h2>
-         
 
-                <table class="table">
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Ano de Lançamento</th>
-                        <th scope="col">ID do ator principal</th>
-                        <th scope="col">ID do ator coadjuvante</th>
-                        <th scope="col">Data de Lançamento</th>
-                        <th scope="col">Duração em minutos</th>
-                        <th scope="col">ID da classificação etária</th>
-                        <th scope="col">ID do gênero</th>
-                    </tr>
 
-                    <tr>
-                        <td scope="row"> <%= id %> </td>
-                        <td>
-                            <input class="form-control input-sm" name="titulo" type="text" value="<%= titulo %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="ano_lancamento" type="number" value="<%= ano_lancamento %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="ator_principal_id" type="number" value="<%= ator_principal_id %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="ator_coadjuvante_id" type="number" value="<%= ator_coadjuvante_id %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="data_lancamento" type="date" value="<%= data_lancamento %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="duracao_minutos" type="number" value="<%= duracao_minutos %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="classificacao_etaria_id" type="number" value="<%= classificacao_etaria_id %>"/>
-                        </td>
-                        <td>
-                            <input class="form-control input-sm" name="genero_id" type="number" value="<%= genero_id %>"/>
-                        </td>
+            <table class="table">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Ano de Lançamento</th>
+                    <th scope="col">Ator principal</th>
+                    <th scope="col">Ator coadjuvante</th>
+                    <th scope="col">Data de Lançamento</th>
+                    <th scope="col">Duração em minutos</th>
+                    <th scope="col">Classificação etária</th>
+                    <th scope="col">Gênero</th>
+                </tr>
 
-                    </tr>
-                    
+                <tr>
+                    <td scope="row"> <%= id %> </td>
+                    <td>
+                        <input class="form-control input-sm" name="titulo" type="text" value="<%= titulo %>"/>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm" name="ano_lancamento" type="number" value="<%= ano_lancamento %>"/>
+                    </td>
+                    <td>
+                        <jsp:useBean
+                            id="servicos"
+                            scope="application"
+                            class="locacaodvds.servicos.AtorServices"/>
 
-                </table>
-                <button type="submit" class="btn btn-primary">Alterar</button>
+
+                        <select name="ator_principal_id" required>
+                            <c:forEach items="${servicos.todos}" var="ator">
+                                <c:choose>
+                                    <c:when test="${ator_principal_id eq ator.id}">
+                                        <option value="${ator.id}" selected>
+                                            ${ator.nome}
+                                        </option>
+                                    </c:when>
+                                    <c:otherwise> 
+                                        <option value="${ator.id}">
+                                            ${ator.nome}
+                                        </option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
+
+                    </td>
+                    <td>
+                        <input class="form-control input-sm" name="ator_coadjuvante_id" type="number" value="<%= ator_coadjuvante_id %>"/>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm" name="data_lancamento" type="date" value="<%= data_lancamento %>"/>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm" name="duracao_minutos" type="number" value="<%= duracao_minutos %>"/>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm" name="classificacao_etaria_id" type="number" value="<%= classificacao_etaria_id %>"/>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm" name="genero_id" type="number" value="<%= genero_id %>"/>
+                    </td>
+
+                </tr>
+
+
+            </table>
+            <button type="submit" class="btn btn-primary">Alterar</button>
 
 
         </form>
 
         <br>
         <a class="btn btn-secondary" href="listagem.jsp">Voltar</a>
-  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <br>
+        <%= ator_principal_id %> == ${ator_principal_id} <br/> <br/>
+        <c:forEach items="${servicos.todos}" var="ator">
+            ${ator.id} - ${ator.nome} <br/> <br/>
+        </c:forEach>
+    </body>
 </html>

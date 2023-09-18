@@ -19,6 +19,7 @@
 </head>
 <body>
     <h2>Classificações etárias</h2>
+    <br>
     <table class="table">
         <tr>
             <th scope="col">id</th>
