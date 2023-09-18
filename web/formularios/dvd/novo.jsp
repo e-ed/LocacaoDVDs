@@ -24,11 +24,11 @@
 
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título </label>
-                <input name="titulo" type="text" class="form-control">
+                <input required name="titulo" type="text" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="ano_lancamento" class="form-label">Ano de lançamento </label>
-                <input name="ano_lancamento" type="number" class="form-control">
+                <input required name="ano_lancamento" type="number" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="ator_principal_id" class="form-label">Ator principal: </label>
@@ -60,12 +60,12 @@
 
             <div class="mb-3">
                 <label for="data_lancamento" class="form-label">Data de lançamento:  </label>
-                <input name="data_lancamento" type="date" class="form-control">
+                <input required name="data_lancamento" type="date" class="form-control">
             </div>
 
             <div class="mb-3">
                 <label for="duracao_minutos" class="form-label">Duração em minutos:  </label>
-                <input name="duracao_minutos" type="number" class="form-control">
+                <input required name="duracao_minutos" type="number" class="form-control">
             </div>
 
             <div class="mb-3">
