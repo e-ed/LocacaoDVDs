@@ -25,8 +25,8 @@
         <div class="d-flex justify-content-center">
             <h1>Sistema para Cadastro de DVDs</h1>
         </div>
-        <hr>
-        <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <br/><br/>
+        <nav class="container-sm navbar border" data-bs-theme="dark">
         
 
                     <p class="ms-5 me-3">

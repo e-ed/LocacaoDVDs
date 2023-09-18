@@ -63,7 +63,7 @@
                     <td>
                         <jsp:useBean
                             id="servicos"
-                            scope="application"
+                            scope="page"
                             class="locacaodvds.servicos.AtorServices"/>
 
 
@@ -113,7 +113,7 @@
                     <td>
                         <jsp:useBean
                             id="ce_servicos"
-                            scope="application"
+                            scope="page"
                             class="locacaodvds.servicos.ClassificacaoEtariaServices"/>
 
 
@@ -137,7 +137,7 @@
                     <td>
                         <jsp:useBean
                             id="genero_servicos"
-                            scope="application"
+                            scope="page"
                             class="locacaodvds.servicos.GeneroServices"/>
 
 
