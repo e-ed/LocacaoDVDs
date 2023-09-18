@@ -29,6 +29,9 @@
         String genero_id = request.getParameter("genero_id");
         %>
         <c:set var="ator_principal_id" value="<%= ator_principal_id %>"/>
+        <c:set var="ator_coadjuvante_id" value="<%= ator_coadjuvante_id %>"/>
+        <c:set var="classificacao_etaria_id" value="<%= classificacao_etaria_id %>"/>
+        <c:set var="genero_id" value="<%= genero_id %>"/>
 
         <form method="POST" action="/LocacaoDVDs/processaDVDs">
             <input name="acao" type="hidden" value="alterar"/>
@@ -83,7 +86,23 @@
 
                     </td>
                     <td>
-                        <input class="form-control input-sm" name="ator_coadjuvante_id" type="number" value="<%= ator_coadjuvante_id %>"/>
+
+                        <select name="ator_coadjuvante_id" required>
+                            <c:forEach items="${servicos.todos}" var="ator">
+                                <c:choose>
+                                    <c:when test="${ator_coadjuvante_id eq ator.id}">
+                                        <option value="${ator.id}" selected>
+                                            ${ator.nome}
+                                        </option>
+                                    </c:when>
+                                    <c:otherwise> 
+                                        <option value="${ator.id}">
+                                            ${ator.nome}
+                                        </option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
                     </td>
                     <td>
                         <input class="form-control input-sm" name="data_lancamento" type="date" value="<%= data_lancamento %>"/>
@@ -92,10 +111,52 @@
                         <input class="form-control input-sm" name="duracao_minutos" type="number" value="<%= duracao_minutos %>"/>
                     </td>
                     <td>
-                        <input class="form-control input-sm" name="classificacao_etaria_id" type="number" value="<%= classificacao_etaria_id %>"/>
+                        <jsp:useBean
+                            id="ce_servicos"
+                            scope="application"
+                            class="locacaodvds.servicos.ClassificacaoEtariaServices"/>
+
+
+                        <select name="classificacao_etaria_id" required>
+                            <c:forEach items="${ce_servicos.todos}" var="ce">
+                                <c:choose>
+                                    <c:when test="${classificacao_etaria_id eq ce.id}">
+                                        <option value="${ce.id}" selected>
+                                            ${ce.descricao}
+                                        </option>
+                                    </c:when>
+                                    <c:otherwise> 
+                                        <option value="${ce.id}">
+                                            ${ce.descricao}
+                                        </option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
                     </td>
                     <td>
-                        <input class="form-control input-sm" name="genero_id" type="number" value="<%= genero_id %>"/>
+                        <jsp:useBean
+                            id="genero_servicos"
+                            scope="application"
+                            class="locacaodvds.servicos.GeneroServices"/>
+
+
+                        <select name="genero_id" required>
+                            <c:forEach items="${genero_servicos.todos}" var="genero">
+                                <c:choose>
+                                    <c:when test="${genero_id eq genero.id}">
+                                        <option value="${genero.id}" selected>
+                                            ${genero.descricao}
+                                        </option>
+                                    </c:when>
+                                    <c:otherwise> 
+                                        <option value="${genero.id}">
+                                            ${genero.descricao}
+                                        </option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
                     </td>
 
                 </tr>
@@ -111,10 +172,7 @@
         <a class="btn btn-secondary" href="listagem.jsp">Voltar</a>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <br>
-        <%= ator_principal_id %> == ${ator_principal_id} <br/> <br/>
-        <c:forEach items="${servicos.todos}" var="ator">
-            ${ator.id} - ${ator.nome} <br/> <br/>
-        </c:forEach>
+
+
     </body>
 </html>
