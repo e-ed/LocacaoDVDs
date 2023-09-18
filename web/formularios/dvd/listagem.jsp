@@ -25,8 +25,8 @@
             <th scope="col">id</th>
             <th scope="col">Título</th>
             <th scope="col">Ano de lançamento</th>
-            <th scope="col">ID do ator principal</th>
-            <th scope="col">ID do ator coadjuvante</th>
+            <th scope="col">Ator principal</th>
+            <th scope="col">Ator coadjuvante</th>
             <th scope="col">Data de lançamento</th>
             <th scope="col">Duração em minutos</th>
             <th scope="col">Classificação etária</th>

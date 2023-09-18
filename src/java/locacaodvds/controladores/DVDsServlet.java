@@ -40,53 +40,62 @@ public class DVDsServlet extends HttpServlet {
         DVDDAO dvdDAO = null;
         RequestDispatcher disp = null;
 
-        try {
-            dvdDAO = new DVDDAO();
-            switch (request.getParameter("acao")) {
-                case "inserir":
-                    DVD dvd = new DVD();
-                    dvd.setTitulo(request.getParameter("titulo"));
-                    dvd.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
-                    dvd.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
-                    dvd.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
-                    dvd.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
-                    dvd.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
-                    dvd.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
-                    dvd.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
+        String titulo = request.getParameter("titulo");
+        System.out.println("titulo eh " + titulo);
 
-                    dvdDAO.salvar(dvd);
-                    disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
-                    break;
-                case "alterar":
-                    DVD dvdAtualizado = new DVD();
-                    dvdAtualizado.setId(Integer.valueOf(request.getParameter("id")));
-                    dvdAtualizado.setTitulo(request.getParameter("titulo"));
-                    dvdAtualizado.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
-                    dvdAtualizado.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
-                    dvdAtualizado.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
-                    dvdAtualizado.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
-                    dvdAtualizado.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
-                    dvdAtualizado.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
-                    dvdAtualizado.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
+        if (titulo == null || titulo.isEmpty() || titulo.isBlank() || titulo.length() == 0) {
+            request.setAttribute("errorMessage", "Nome inválido!");
+            request.setAttribute("voltar", "formularios/dvd/listagem.jsp");
+            disp = request.getRequestDispatcher("/erro/erro.jsp");
+        } else {
+            try {
+                dvdDAO = new DVDDAO();
+                switch (request.getParameter("acao")) {
+                    case "inserir":
+                        DVD dvd = new DVD();
+                        dvd.setTitulo(titulo);
+                        dvd.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
+                        dvd.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
+                        dvd.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
+                        dvd.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
+                        dvd.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
+                        dvd.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
+                        dvd.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
 
-                    dvdDAO.atualizar(dvdAtualizado);
-                    disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
-                    break;
-                case "excluir":
-                    DVD dvdExcluido = new DVD();
-                    dvdExcluido.setId(Integer.valueOf(request.getParameter("id")));
-                    dvdDAO.excluir(dvdExcluido);
-                    disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
-                    break;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (dvdDAO != null) {
-                try {
-                    dvdDAO.fecharConexao();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AtoresServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        dvdDAO.salvar(dvd);
+                        disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
+                        break;
+                    case "alterar":
+                        DVD dvdAtualizado = new DVD();
+                        dvdAtualizado.setId(Integer.valueOf(request.getParameter("id")));
+                        dvdAtualizado.setTitulo(request.getParameter("titulo"));
+                        dvdAtualizado.setAno_lancamento(Integer.valueOf(request.getParameter("ano_lancamento")));
+                        dvdAtualizado.setAtor_principal_id(Integer.valueOf(request.getParameter("ator_principal_id")));
+                        dvdAtualizado.setAtor_coadjuvante_id(Integer.valueOf(request.getParameter("ator_coadjuvante_id")));
+                        dvdAtualizado.setData_lancamento(Date.valueOf(request.getParameter("data_lancamento")));
+                        dvdAtualizado.setDuracao_minutos(Integer.valueOf(request.getParameter("duracao_minutos")));
+                        dvdAtualizado.setClassificacao_etaria_id(Integer.valueOf(request.getParameter("classificacao_etaria_id")));
+                        dvdAtualizado.setGenero_id(Integer.valueOf(request.getParameter("genero_id")));
+
+                        dvdDAO.atualizar(dvdAtualizado);
+                        disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
+                        break;
+                    case "excluir":
+                        DVD dvdExcluido = new DVD();
+                        dvdExcluido.setId(Integer.valueOf(request.getParameter("id")));
+                        dvdDAO.excluir(dvdExcluido);
+                        disp = request.getRequestDispatcher("/formularios/dvd/listagem.jsp");
+                        break;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                if (dvdDAO != null) {
+                    try {
+                        dvdDAO.fecharConexao();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AtoresServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }
