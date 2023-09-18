@@ -17,8 +17,8 @@ import locacaodvds.entidades.DVD;
  */
 public class DVDDAO extends DAO<DVD> {
 
-    public DVDDAO() throws SQLException {}
-    
+    public DVDDAO() throws SQLException {
+    }
 
     @Override
     public void salvar(DVD obj) throws SQLException {
@@ -45,8 +45,8 @@ public class DVDDAO extends DAO<DVD> {
     public void atualizar(DVD obj) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement(
                 "update dvd set titulo = ?, ano_lancamento = ?, ator_principal_id = ?, "
-                        + "ator_coadjuvante_id = ?, data_lancamento = ?, duracao_minutos = ?, "
-                        + "classificacao_etaria_id = ?, genero_id = ? where id = ?;"
+                + "ator_coadjuvante_id = ?, data_lancamento = ?, duracao_minutos = ?, "
+                + "classificacao_etaria_id = ?, genero_id = ? where id = ?;"
         );
 
         stmt.setString(1, obj.getTitulo());
@@ -66,7 +66,7 @@ public class DVDDAO extends DAO<DVD> {
     @Override
     public void excluir(DVD obj) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement(
-        "delete from dvd where id = ?;"
+                "delete from dvd where id = ?;"
         );
         stmt.setInt(1, obj.getId());
         stmt.executeUpdate();
@@ -76,9 +76,27 @@ public class DVDDAO extends DAO<DVD> {
     @Override
     public List<DVD> listarTodos() throws SQLException {
         List<DVD> list = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("select * from dvd");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT \n"
+                + "    dvd.id, \n"
+                + "    dvd.titulo, \n"
+                + "    dvd.ano_lancamento, \n"
+                + "    dvd.ator_principal_id, \n"
+                + "    dvd.ator_coadjuvante_id, \n"
+                + "    dvd.data_lancamento, \n"
+                + "    dvd.duracao_minutos, \n"
+                + "    dvd.classificacao_etaria_id, \n"
+                + "    dvd.genero_id, \n"
+                + "    a_p.nome AS ator_principal_nome, \n"
+                + "    a_c.nome AS ator_coadjuvante_nome, \n"
+                + "    genero.descricao AS genero_descricao, \n"
+                + "    classificacao_etaria.descricao AS classificacao_etaria_descricao \n"
+                + "FROM dvd \n"
+                + "JOIN ator a_p ON dvd.ator_principal_id = a_p.id\n"
+                + "JOIN ator a_c ON dvd.ator_coadjuvante_id = a_c.id\n"
+                + "JOIN genero ON dvd.genero_id = genero.id \n"
+                + "INNER JOIN classificacao_etaria ON dvd.classificacao_etaria_id = classificacao_etaria.id;");
         ResultSet rs = stmt.executeQuery();
-        
+
         while (rs.next()) {
             DVD dvd = new DVD();
             dvd.setId(Integer.valueOf(rs.getString("id")));
@@ -90,11 +108,15 @@ public class DVDDAO extends DAO<DVD> {
             dvd.setDuracao_minutos(rs.getInt("duracao_minutos"));
             dvd.setClassificacao_etaria_id(rs.getInt("classificacao_etaria_id"));
             dvd.setGenero_id(rs.getInt("genero_id"));
-            
+            dvd.setAtor_principal_nome(rs.getString("ator_principal_nome"));
+            dvd.setAtor_coadjuvante_nome(rs.getString("ator_coadjuvante_nome"));
+            dvd.setClassificacao_etaria_descricao(rs.getString("classificacao_etaria_descricao"));
+            dvd.setGenero_descricao(rs.getString("genero_descricao"));
+
             list.add(dvd);
-            
+
         }
-        
+
         rs.close();
         stmt.close();
         return list;
@@ -103,12 +125,12 @@ public class DVDDAO extends DAO<DVD> {
     @Override
     public DVD obterPorId(int id) throws SQLException {
         DVD dvd = null;
-        
+
         PreparedStatement stmt = getConnection().prepareStatement("select * from dvd where id = ?;");
         stmt.setInt(1, id);
-        
+
         ResultSet rs = stmt.executeQuery();
-        
+
         if (rs.next()) {
             dvd = new DVD();
             dvd.setTitulo(rs.getString("titulo"));
@@ -120,7 +142,7 @@ public class DVDDAO extends DAO<DVD> {
             dvd.setClassificacao_etaria_id(rs.getInt("classificacao_etaria_id"));
             dvd.setGenero_id(rs.getInt("genero_id"));
         }
-        
+
         rs.close();
         stmt.close();
         return dvd;

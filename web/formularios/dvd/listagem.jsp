@@ -29,8 +29,8 @@
             <th scope="col">ID do ator coadjuvante</th>
             <th scope="col">Data de lançamento</th>
             <th scope="col">Duração em minutos</th>
-            <th scope="col">ID da classificação etária</th>
-            <th scope="col">ID do gênero</th>
+            <th scope="col">Classificação etária</th>
+            <th scope="col">Gênero</th>
             <th scope="col">Alterar</th>
             <th scope="col">Excluir</th>
         </thead>
@@ -43,12 +43,12 @@
                 <td scope="row">${dvd.id}</td>
                 <td>${dvd.titulo}</td>
                 <td>${dvd.ano_lancamento}</td>
-                <td>${dvd.ator_principal_id}</td>
-                <td>${dvd.ator_coadjuvante_id}</td>
+                <td>${dvd.ator_principal_nome}</td>
+                <td>${dvd.ator_coadjuvante_nome}</td>
                 <td>${dvd.data_lancamento}</td>
                 <td>${dvd.duracao_minutos}</td>
-                <td>${dvd.classificacao_etaria_id}</td>
-                <td>${dvd.genero_id}</td>
+                <td>${dvd.classificacao_etaria_descricao}</td>
+                <td>${dvd.genero_descricao}</td>
                 <td>
                     <a href="${cp}/formularios/dvd/alterar.jsp?id=${dvd.id}&titulo=${dvd.titulo}&ano_lancamento=${dvd.ano_lancamento}&ator_principal_id=${dvd.ator_principal_id}&ator_coadjuvante_id=${dvd.ator_coadjuvante_id}&data_lancamento=${dvd.data_lancamento}&duracao_minutos=${dvd.duracao_minutos}&classificacao_etaria_id=${dvd.classificacao_etaria_id}&genero_id=${dvd.genero_id}">
                         Alterar

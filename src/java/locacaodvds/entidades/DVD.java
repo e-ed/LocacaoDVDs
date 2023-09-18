@@ -10,14 +10,56 @@ import java.sql.Date;
  */
 public class DVD {
     private int id;
+    
     private String titulo;
+    
     private int ano_lancamento;
+    
     private int ator_principal_id;
+    
+    private String ator_principal_nome;
+    
     private int ator_coadjuvante_id;
+    
+    private String ator_coadjuvante_nome;
+
+    public String getAtor_principal_nome() {
+        return ator_principal_nome;
+    }
+
+    public void setAtor_principal_nome(String ator_principal_nome) {
+        this.ator_principal_nome = ator_principal_nome;
+    }
+
+    public String getAtor_coadjuvante_nome() {
+        return ator_coadjuvante_nome;
+    }
+
+    public void setAtor_coadjuvante_nome(String ator_coadjuvante_nome) {
+        this.ator_coadjuvante_nome = ator_coadjuvante_nome;
+    }
     private Date data_lancamento;
     private int duracao_minutos;
     private int classificacao_etaria_id;
+    private String classificacao_etaria_descricao;
     private int genero_id;
+    private String genero_descricao;
+
+    public String getClassificacao_etaria_descricao() {
+        return classificacao_etaria_descricao;
+    }
+
+    public void setClassificacao_etaria_descricao(String classificacao_etaria_descricao) {
+        this.classificacao_etaria_descricao = classificacao_etaria_descricao;
+    }
+
+    public String getGenero_descricao() {
+        return genero_descricao;
+    }
+
+    public void setGenero_descricao(String genero_descricao) {
+        this.genero_descricao = genero_descricao;
+    }
 
     public DVD() {
     }
