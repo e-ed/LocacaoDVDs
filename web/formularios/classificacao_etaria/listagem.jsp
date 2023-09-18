@@ -20,13 +20,13 @@
 <body class="container">
     <h2>Classificações etárias</h2>
     <br>
-    <table class="table">
-        <tr>
+    <table class="table table-dark table-striped">
+        <thead class="table-light">
             <th scope="col">id</th>
             <th scope="col">Descrição</th>
             <th scope="col">Alterar</th>
             <th scope="col">Excluir</th>
-        </tr>
+        </thead>
         <jsp:useBean
             id="servicos"
             scope="page"

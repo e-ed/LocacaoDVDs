@@ -21,14 +21,14 @@
     <h2>Atores</h2>
     <br>
     <table class="table table-dark table-striped">
-        <tr>
+        <thead class="table-light">
             <th scope="col">id</th>
             <th scope="col">Nome</th>
             <th scope="col">Sobrenome</th>
             <th scope="col">Data de Estréia</th>
             <th scope="col">Alterar</th>
             <th scope="col">Excluir</th>
-        </tr>
+        </thead>
         <jsp:useBean
             id="servicos"
             scope="page"

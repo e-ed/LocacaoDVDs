@@ -20,8 +20,8 @@
 </head>
 <body class="container">
     <h2>DVDs</h2>
-    <table class="table table-striped">
-        <tr>
+    <table class="table table-dark table-striped">
+        <thead class="table-light">
             <th scope="col">id</th>
             <th scope="col">Título</th>
             <th scope="col">Ano de lançamento</th>
@@ -33,7 +33,7 @@
             <th scope="col">ID do gênero</th>
             <th scope="col">Alterar</th>
             <th scope="col">Excluir</th>
-        </tr>
+        </thead>
         <jsp:useBean
             id="servicos"
             scope="page"
