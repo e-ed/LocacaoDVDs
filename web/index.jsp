@@ -30,20 +30,20 @@
         
 
                     <p class="ms-5 me-3">
-                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/ator/listagem.jsp">Atores</a>
+                        <a class="btn btn-outline-info" class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/ator/listagem.jsp">Atores</a>
                     </p>
       
                     <p class="ms-3 me-3">
-                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/classificacao_etaria/listagem.jsp">Classificacões Etárias</a>
+                        <a class="btn btn-outline-info" class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/classificacao_etaria/listagem.jsp">Classificacões Etárias</a>
                     </p>
 
 
                     <p class="ms-3 me-3">
-                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/genero/listagem.jsp">Gêneros</a>
+                        <a class="btn btn-outline-info" class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/genero/listagem.jsp">Gêneros</a>
                     </p>
         
                     <p class="ms-3 me-5">
-                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/dvd/listagem.jsp">DVDs</a>
+                        <a class="btn btn-outline-info" class="link-offset-2 link-underline link-underline-opacity-0" href="${cp}/formularios/dvd/listagem.jsp">DVDs</a>
                     </p>
                 
             </div>
