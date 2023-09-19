@@ -18,6 +18,7 @@ import locacaodvds.dao.DVDDAO;
 import locacaodvds.entidades.DVD;
 import java.sql.Date;
 import java.util.Calendar;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -112,7 +113,9 @@ public class DVDsServlet extends HttpServlet {
                     break;
             }
         } catch (SQLException e) {
+         
             e.printStackTrace();
+
         } finally {
             if (dvdDAO != null) {
                 try {

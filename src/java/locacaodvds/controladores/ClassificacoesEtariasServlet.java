@@ -28,14 +28,13 @@ import locacaodvds.entidades.ClassificacaoEtaria;
 @WebServlet(name = "ClassificacoesEtariasServlet", urlPatterns = {"/processaClassificacoesEtarias"})
 public class ClassificacoesEtariasServlet extends HttpServlet {
 
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ClassificacaoEtariaDAO classificacaoEtariaDAO = null;
         RequestDispatcher disp = null;
 
         try {
-            classificacaoEtariaDAO= new ClassificacaoEtariaDAO();
+            classificacaoEtariaDAO = new ClassificacaoEtariaDAO();
             switch (request.getParameter("acao")) {
                 case "inserir":
                     ClassificacaoEtaria c = new ClassificacaoEtaria();
@@ -58,6 +57,10 @@ public class ClassificacoesEtariasServlet extends HttpServlet {
                     break;
             }
         } catch (SQLException e) {
+            request.setAttribute("errorMessage", "Operação inválida!");
+            request.setAttribute("voltar", "formularios/classificacao_etaria/listagem.jsp");
+            disp = request.getRequestDispatcher("/erro/erro.jsp");
+            disp.forward(request, response);
             e.printStackTrace();
         } finally {
             if (classificacaoEtariaDAO != null) {
@@ -72,7 +75,7 @@ public class ClassificacoesEtariasServlet extends HttpServlet {
         if (disp != null) {
             disp.forward(request, response);
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

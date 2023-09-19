@@ -30,75 +30,46 @@ public class GenerosServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher disp = null;
         GeneroDAO generoDAO = null;
-
-        switch (request.getParameter("acao")) {
-            case "inserir":
-                Genero genero = new Genero();
-                try {
-                    generoDAO = new GeneroDAO();
+        try {
+            generoDAO = new GeneroDAO();
+            switch (request.getParameter("acao")) {
+                case "inserir":
+                    Genero genero = new Genero();
                     genero.setDescricao(request.getParameter("descricao"));
                     generoDAO.salvar(genero);
                     disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
+                    break;
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                case "excluir":
+                    Genero generoSendoExcluido = new Genero();
+                    generoSendoExcluido.setId(Integer.valueOf(request.getParameter("id")));
+                    generoDAO.excluir(generoSendoExcluido);
+                    disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
+                    break;
 
-                } finally {
-                    if (generoDAO != null) {
-                        try {
-                            generoDAO.fecharConexao();
-                        } catch (SQLException ex) {
-                            Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
-                break;
+                case "alterar":
+                    Genero generoSendoAlterado = new Genero();
+                    generoSendoAlterado.setId(Integer.valueOf(request.getParameter("id")));
+                    generoSendoAlterado.setDescricao(request.getParameter("descricao"));
+                    generoDAO.atualizar(generoSendoAlterado);
+                    disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
+                    break;
+            }
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Operação inválida!");
+            request.setAttribute("voltar", "formularios/genero/listagem.jsp");
+            disp = request.getRequestDispatcher("/erro/erro.jsp");
+            disp.forward(request, response);
+            e.printStackTrace();
 
-            case "excluir": 
+        } finally {
+            if (generoDAO != null) {
                 try {
-                generoDAO = new GeneroDAO();
-                Genero generoSendoExcluido = new Genero();
-                generoSendoExcluido.setId(Integer.valueOf(request.getParameter("id")));
-                generoDAO.excluir(generoSendoExcluido);
-                disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (generoDAO != null) {
-                    try {
-                        generoDAO.fecharConexao();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    generoDAO.fecharConexao();
+                } catch (SQLException ex) {
+                    Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
-            break;
-            case "alterar": 
-                try {
-                generoDAO = new GeneroDAO();
-                Genero generoSendoAlterado = new Genero();
-                generoSendoAlterado.setId(Integer.valueOf(request.getParameter("id")));
-                generoSendoAlterado.setDescricao(request.getParameter("descricao"));
-
-                generoDAO.atualizar(generoSendoAlterado);
-                disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (generoDAO != null) {
-                    try {
-                        generoDAO.fecharConexao();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(GenerosServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-
-            break;
-
         }
 
         if (disp != null) {

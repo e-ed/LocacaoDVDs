@@ -60,6 +60,10 @@ public class AtoresServlet extends HttpServlet {
                     break;
             }
         } catch (SQLException e) {
+            request.setAttribute("errorMessage", "Operação inválida!");
+            request.setAttribute("voltar", "formularios/ator/listagem.jsp");
+            disp = request.getRequestDispatcher("/erro/erro.jsp");
+            disp.forward(request, response);
             e.printStackTrace();
         } finally {
             if (atorDAO != null) {
