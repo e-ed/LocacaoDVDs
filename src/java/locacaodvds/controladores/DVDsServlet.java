@@ -18,7 +18,6 @@ import locacaodvds.dao.DVDDAO;
 import locacaodvds.entidades.DVD;
 import java.sql.Date;
 import java.util.Calendar;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  *
