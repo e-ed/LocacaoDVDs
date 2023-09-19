@@ -60,7 +60,7 @@
 
             <div class="mb-3">
                 <label for="data_lancamento" class="form-label">Data de lançamento:  </label>
-                <input required name="data_lancamento" type="date" class="form-control">
+                <input required placeholder="dd-mm-yyyy" name="data_lancamento" type="date" class="form-control">
             </div>
 
             <div class="mb-3">

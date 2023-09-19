@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html>
@@ -45,7 +46,9 @@
                 <td>${dvd.ano_lancamento}</td>
                 <td>${dvd.ator_principal_nome}</td>
                 <td>${dvd.ator_coadjuvante_nome}</td>
-                <td>${dvd.data_lancamento}</td>
+                <td>
+                <fmt:formatDate value="${dvd.data_lancamento}" pattern="dd-MM-yyyy" />
+                </td>
                 <td>${dvd.duracao_minutos}</td>
                 <td>${dvd.classificacao_etaria_descricao}</td>
                 <td>${dvd.genero_descricao}</td>
