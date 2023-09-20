@@ -23,7 +23,7 @@
 
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição: </label>
-                <input name="descricao" type="text" class="form-control" aria-describedby="emailHelp">
+                <input required name="descricao" type="text" class="form-control" aria-describedby="emailHelp">
             </div>
 
 

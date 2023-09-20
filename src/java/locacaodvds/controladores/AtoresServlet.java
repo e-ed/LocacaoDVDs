@@ -30,10 +30,21 @@ public class AtoresServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         AtorDAO atorDAO = null;
         RequestDispatcher disp = null;
+        String acao = request.getParameter("acao");
+        
+        if (acao.equals("inserir") || acao.equals("alterar")) {
 
+            if (request.getParameter("nome").isBlank() || request.getParameter("sobrenome").isBlank() || request.getParameter("data_estreia").isBlank()) {
+                request.setAttribute("errorMessage", "Dados inválidos!");
+                request.setAttribute("voltar", "formularios/ator/listagem.jsp");
+                disp = request.getRequestDispatcher("/erro/erro.jsp");
+                disp.forward(request, response);
+                return;
+            }
+        }
         try {
             atorDAO = new AtorDAO();
-            switch (request.getParameter("acao")) {
+            switch (acao) {
                 case "inserir":
                     Ator ator = new Ator();
                     ator.setNome(request.getParameter("nome"));

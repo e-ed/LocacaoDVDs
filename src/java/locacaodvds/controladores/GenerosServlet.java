@@ -29,6 +29,18 @@ public class GenerosServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher disp = null;
         GeneroDAO generoDAO = null;
+        String acao = request.getParameter("acao");
+
+        if (acao.equals("inserir") || acao.equals("alterar")) {
+
+            if ( request.getParameter("descricao").isBlank() ) {
+                request.setAttribute("errorMessage", "Dados inválidos!");
+                request.setAttribute("voltar", "formularios/genero/listagem.jsp");
+                disp = request.getRequestDispatcher("/erro/erro.jsp");
+                disp.forward(request, response);
+                return;
+            }
+        }
         try {
             generoDAO = new GeneroDAO();
             switch (request.getParameter("acao")) {

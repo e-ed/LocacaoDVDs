@@ -23,17 +23,17 @@
 
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome </label>
-                <input name="nome" type="text" class="form-control">
+                <input required name="nome" type="text" class="form-control">
             </div>
             
             <div class="mb-3">
                 <label for="sobrenome" class="form-label">Sobrenome </label>
-                <input name="sobrenome" type="text" class="form-control">
+                <input required name="sobrenome" type="text" class="form-control">
             </div>
             
             <div class="mb-3">
                 <label for="data_estreia" class="form-label">Data de estréia:  </label>
-                <input name="data_estreia" type="date" class="form-control">
+                <input required name="data_estreia" type="date" class="form-control">
             </div>
 
 

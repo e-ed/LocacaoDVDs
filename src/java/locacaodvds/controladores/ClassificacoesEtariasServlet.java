@@ -28,10 +28,22 @@ public class ClassificacoesEtariasServlet extends HttpServlet {
             throws ServletException, IOException {
         ClassificacaoEtariaDAO classificacaoEtariaDAO = null;
         RequestDispatcher disp = null;
+        String acao = request.getParameter("acao");
+
+        if (acao.equals("inserir") || acao.equals("alterar")) {
+
+            if ( request.getParameter("descricao").isBlank() ) {
+                request.setAttribute("errorMessage", "Dados inválidos!");
+                request.setAttribute("voltar", "formularios/classificacao_etaria/listagem.jsp");
+                disp = request.getRequestDispatcher("/erro/erro.jsp");
+                disp.forward(request, response);
+                return;
+            }
+        }
 
         try {
             classificacaoEtariaDAO = new ClassificacaoEtariaDAO();
-            switch (request.getParameter("acao")) {
+            switch (acao) {
                 case "inserir":
                     ClassificacaoEtaria c = new ClassificacaoEtaria();
                     c.setDescricao(request.getParameter("descricao"));
